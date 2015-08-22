@@ -44,6 +44,16 @@
 
   camera.position.z = 5;
 
+  var render = function () {
+  	requestAnimationFrame( render );
+
+  	cube.rotation.x += 0.001;
+  	cube.rotation.y += 0.001;
+
+  	renderer.render(scene, camera);
+  };
+
+  render();
 function onDocumentMouseMove( event ) {
 
     event.preventDefault();
@@ -83,18 +93,6 @@ function onDocumentMouseMove( event ) {
 //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
 			//
-anamate();
-var targetRotation = 0;
-var targetRotationOnMouseDown = 0;
-
-var mouseX = 0;
-var mouseXOnMouseDown = 0;
-
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
-
-init();
-animate();
 
 			function onDocumentMouseDown( event ) {
 

@@ -1,11 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
-<h1>Graphlet </h1>
-<a href="editor.html">Graphlet Integrated Development Environment</a><br/>
-<a href="test.html">Graphlet Test</a>
-<a href="transpiler_test.html">Graphlet Export and Transpiler Tests</a>
-</body>
+
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.angularjs.org/2.0.0-alpha.20/angular2.sfx.dev.js"></script>
+    <script src="app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        angular.bootstrap(App);
+      });
+    </script>
+  </head>
+
+  <body>
+    <app></app>
+  </body>
+
 </html>

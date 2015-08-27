@@ -10,13 +10,17 @@ Turtlearium.annotations = [
 ];
 
 function Honeybee() {
+  this.onNewSource = function onNewSource() {
+    alert("load new source");
+  };
+
 }
 Honeybee.annotations = [
   new angular.ComponentAnnotation({
     selector: 'honeybee',
   }),
   new angular.ViewAnnotation({
-    template: '<graphlet>graphlet</graphlet>'
+    template: '<graphlet (loadGraph)="onNewSource">graphlet</graphlet>'
   })
 ];
 

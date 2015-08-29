@@ -5,13 +5,15 @@ Turtlearium.annotations = [
     selector: 'turtlearium',
   }),
   new angular.ViewAnnotation({
-    template: '<canvas></canvas>'
+    templateUrl: 'views/turtlearium.html'
   })
 ];
 
 function Honeybee() {
-  this.onNewSource = function onNewSource() {
+  this.currentGraph = "none";
+  this.onNewSource = function onNewSource(graphlet_name) {
     alert("load new source");
+    this.currentGraph = graphlet_name;
   };
 
 }
@@ -20,7 +22,7 @@ Honeybee.annotations = [
     selector: 'honeybee',
   }),
   new angular.ViewAnnotation({
-    template: '<graphlet (loadGraph)="onNewSource">graphlet</graphlet>'
+    templateUrl: 'views/honeybee.html'
   })
 ];
 

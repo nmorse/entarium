@@ -12,16 +12,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var HoneyBee = (function () {
     function HoneyBee(gs) {
-        this.graph = gs.graphel;
+        this.newcontent = new angular2_1.EventEmitter();
     }
+    HoneyBee.prototype.newContentReady = function () {
+        console.log("from the bottom");
+        this.newcontent.next();
+    };
     HoneyBee = __decorate([
         angular2_1.Component({
-            appInjector: [GraphService],
+            events: ['newcontent'],
             selector: 'honeybee'
         }),
         angular2_1.View({
             template: '<h2>Honey Bee</h2>\
-  {{graph.nodes[0].id}}\
+  \
+  <button (click)="newContentReady()">is good</button>\
   '
         }), 
         __metadata('design:paramtypes', [])
@@ -45,6 +50,9 @@ var BeeHive = (function () {
 var AppComponent = (function () {
     function AppComponent() {
     }
+    AppComponent.prototype.broadcastNewContent = function () {
+        console.log("to the top");
+    };
     AppComponent = __decorate([
         angular2_1.Component({
             selector: 'ent-app'
@@ -53,7 +61,7 @@ var AppComponent = (function () {
             directives: [HoneyBee, BeeHive],
             template: '\
     <h1>first Angular 2 App using TypeScript</h1>\
-    <honeybee></honeybee>\
+    <honeybee (newcontent)="broadcastNewContent()"></honeybee>\
     <beehive></beehive>\
   '
         }), 

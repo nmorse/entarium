@@ -12,15 +12,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var HoneyBee = (function () {
     function HoneyBee(gs) {
-        this.newcontent = new angular2_1.EventEmitter();
+        this.newContent = new angular2_1.EventEmitter();
     }
     HoneyBee.prototype.newContentReady = function () {
         console.log("from the bottom");
-        this.newcontent.next();
+        this.newContent.next();
     };
     HoneyBee = __decorate([
         angular2_1.Component({
-            events: ['newcontent'],
+            events: ['newContent'],
             selector: 'honeybee'
         }),
         angular2_1.View({
@@ -61,7 +61,7 @@ var AppComponent = (function () {
             directives: [HoneyBee, BeeHive],
             template: '\
     <h1>first Angular 2 App using TypeScript</h1>\
-    <honeybee (newcontent)="broadcastNewContent()"></honeybee>\
+    <honeybee (new-content)="broadcastNewContent()"></honeybee>\
     <beehive></beehive>\
   '
         }), 

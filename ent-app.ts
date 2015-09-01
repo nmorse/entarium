@@ -2,7 +2,7 @@ import {Component, View, bootstrap, EventEmitter} from 'angular2/angular2';
 
 @Component({
   //>>appInjector: [GraphService],
-  events : ['newcontent'],
+  events : ['newContent'],
   selector: 'honeybee'
 })
 @View({
@@ -12,14 +12,14 @@ import {Component, View, bootstrap, EventEmitter} from 'angular2/angular2';
   '
 })
 class HoneyBee {
-  newcontent: EventEmitter;
+  newContent: EventEmitter;
   constructor (gs: GraphService) {
     //>>this.graph = gs.graphel;
-    this.newcontent = new EventEmitter();
+    this.newContent = new EventEmitter();
   }
   newContentReady() {
     console.log("from the bottom");
-    this.newcontent.next();
+    this.newContent.next();
   }
 }
 
@@ -40,7 +40,7 @@ class BeeHive {
   directives: [HoneyBee, BeeHive],
   template: '\
     <h1>first Angular 2 App using TypeScript</h1>\
-    <honeybee (newcontent)="broadcastNewContent()"></honeybee>\
+    <honeybee (new-content)="broadcastNewContent()"></honeybee>\
     <beehive></beehive>\
   '
 })

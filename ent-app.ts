@@ -24,10 +24,14 @@ class HoneyBee {
 }
 
 @Component({
+  properties: ['work'],
   selector: 'beehive'
 })
 @View({
-  template: '<h2>Bee Hive</h2>'
+  template: '\
+    <h2>Bee Hive</h2>\
+    <div>{{work}}</div>\
+  '
 })
 class BeeHive {
 }
@@ -41,12 +45,14 @@ class BeeHive {
   template: '\
     <h1>first Angular 2 App using TypeScript</h1>\
     <honeybee (new-content)="broadcastNewContent()"></honeybee>\
-    <beehive></beehive>\
+    <beehive [work]="theWork" ></beehive>\
   '
 })
 class AppComponent {
+  theWork: string = '';
   broadcastNewContent() {
     console.log("to the top");
+    this.theWork = 'new work to be done';
   }
 }
 

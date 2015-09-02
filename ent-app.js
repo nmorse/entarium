@@ -38,10 +38,14 @@ var BeeHive = (function () {
     }
     BeeHive = __decorate([
         angular2_1.Component({
+            properties: ['work'],
             selector: 'beehive'
         }),
         angular2_1.View({
-            template: '<h2>Bee Hive</h2>'
+            template: '\
+    <h2>Bee Hive</h2>\
+    <div>{{work}}</div>\
+  '
         }), 
         __metadata('design:paramtypes', [])
     ], BeeHive);
@@ -49,9 +53,11 @@ var BeeHive = (function () {
 })();
 var AppComponent = (function () {
     function AppComponent() {
+        this.theWork = '';
     }
     AppComponent.prototype.broadcastNewContent = function () {
         console.log("to the top");
+        this.theWork = 'new work to be done';
     };
     AppComponent = __decorate([
         angular2_1.Component({
@@ -62,7 +68,7 @@ var AppComponent = (function () {
             template: '\
     <h1>first Angular 2 App using TypeScript</h1>\
     <honeybee (new-content)="broadcastNewContent()"></honeybee>\
-    <beehive></beehive>\
+    <beehive [work]="theWork" ></beehive>\
   '
         }), 
         __metadata('design:paramtypes', [])

@@ -12,21 +12,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var HoneyBee = (function () {
     function HoneyBee(gs) {
+        this.content = 'hi';
         this.newContent = new angular2_1.EventEmitter();
     }
     HoneyBee.prototype.newContentReady = function () {
         console.log("from the bottom");
-        this.newContent.next();
+        this.newContent.next(this.content);
+    };
+    HoneyBee.prototype.onChange = function (e, content) {
+        this.content = content.value;
+        alert(content.value);
     };
     HoneyBee = __decorate([
         angular2_1.Component({
             events: ['newContent'],
+            properties: ['content'],
             selector: 'honeybee'
         }),
         angular2_1.View({
             template: '<h2>Honey Bee</h2>\
-  \
-  <button (click)="newContentReady()">is good</button>\
+  <input (keyup)="onChange($event, content)" #content [value]="content" />\
+  <button (click)="newContentReady()">send content to be worked on</button>\
   '
         }), 
         __metadata('design:paramtypes', [])
@@ -55,8 +61,9 @@ var AppComponent = (function () {
     function AppComponent() {
         this.theWork = '';
     }
-    AppComponent.prototype.broadcastNewContent = function () {
+    AppComponent.prototype.broadcastNewContent = function (work) {
         console.log("to the top");
+        console.log(work);
         this.theWork = 'new work to be done';
     };
     AppComponent = __decorate([
@@ -67,7 +74,7 @@ var AppComponent = (function () {
             directives: [HoneyBee, BeeHive],
             template: '\
     <h1>first Angular 2 App using TypeScript</h1>\
-    <honeybee (new-content)="broadcastNewContent()"></honeybee>\
+    <honeybee (new-content)="broadcastNewContent($event)"></honeybee>\
     <beehive [work]="theWork" ></beehive>\
   '
         }), 

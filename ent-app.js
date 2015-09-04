@@ -17,11 +17,11 @@ var HoneyBee = (function () {
     }
     HoneyBee.prototype.newContentReady = function () {
         console.log("from the bottom");
-        this.newContent.next(this.content);
+        this.newContent.next({ content: this.content });
     };
-    HoneyBee.prototype.onChange = function (e, content) {
-        this.content = content.value;
-        alert(content.value);
+    HoneyBee.prototype.onChange = function (e, new_value) {
+        this.content = new_value;
+        alert(new_value);
     };
     HoneyBee = __decorate([
         angular2_1.Component({
@@ -31,7 +31,7 @@ var HoneyBee = (function () {
         }),
         angular2_1.View({
             template: '<h2>Honey Bee</h2>\
-  <input (keyup)="onChange($event, content)" #content [value]="content" />\
+  <input #input1 (keyup)="onChange($event, input1.value)" [value]="content" />\
   <button (click)="newContentReady()">send content to be worked on</button>\
   '
         }), 
@@ -63,8 +63,8 @@ var AppComponent = (function () {
     }
     AppComponent.prototype.broadcastNewContent = function (work) {
         console.log("to the top");
-        console.log(work);
-        this.theWork = 'new work to be done';
+        console.log(work.content);
+        this.theWork = work.content;
     };
     AppComponent = __decorate([
         angular2_1.Component({

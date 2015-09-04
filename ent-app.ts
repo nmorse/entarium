@@ -8,7 +8,7 @@ import {Component, View, bootstrap, EventEmitter} from 'angular2/angular2';
 })
 @View({
   template: '<h2>Honey Bee</h2>\
-  <input (keyup)="onChange($event, content)" #content [value]="content" />\
+  <input #input1 (keyup)="onChange($event, input1.value)" [value]="content" />\
   <button (click)="newContentReady()">send content to be worked on</button>\
   '
 })
@@ -21,11 +21,11 @@ class HoneyBee {
   }
   newContentReady() {
     console.log("from the bottom");
-    this.newContent.next(this.content);
+    this.newContent.next({content: this.content});
   }
-  onChange(e, content) {
-    this.content = content.value;
-    alert(content.value);
+  onChange(e, new_value) {
+    this.content = new_value;
+    alert(new_value);
   }
 }
 
@@ -58,8 +58,8 @@ class AppComponent {
   theWork: string = '';
   broadcastNewContent(work) {
     console.log("to the top");
-    console.log(work);
-    this.theWork = 'new work to be done';
+    console.log(work.content);
+    this.theWork = work.content;
   }
 }
 

@@ -12,7 +12,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var HoneyBee = (function () {
     function HoneyBee(gs) {
-        this.content = 'emit content';
+        this.content = 'local content';
         this.newContent = new angular2_1.EventEmitter();
     }
     HoneyBee.prototype.newContentReady = function () {
@@ -59,6 +59,8 @@ var BeeHive = (function () {
 })();
 var AppComponent = (function () {
     function AppComponent() {
+        this.hb_content = 'passed in content';
+        this.theWork = 'outside work for beehive';
     }
     AppComponent.prototype.broadcastNewContent = function (work) {
         console.log("to the top");

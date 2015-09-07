@@ -1,7 +1,7 @@
 import {Component, View, bootstrap, EventEmitter} from 'angular2/angular2';
 
 @Component({
-  //>>appInjector: [GraphService],
+  //appInjector: [GraphService],
   events : ['newContent'],
   properties: ['content'],
   selector: 'honeybee'
@@ -14,7 +14,7 @@ import {Component, View, bootstrap, EventEmitter} from 'angular2/angular2';
 })
 class HoneyBee {
   newContent: EventEmitter;
-  content:string = 'hi';
+  content:string = 'emit content';
   constructor (gs: GraphService) {
     //>>this.graph = gs.graphel;
     this.newContent = new EventEmitter();
@@ -25,7 +25,6 @@ class HoneyBee {
   }
   onChange(e, new_value) {
     this.content = new_value;
-    alert(new_value);
   }
 }
 
@@ -40,6 +39,7 @@ class HoneyBee {
   '
 })
 class BeeHive {
+  work:string = 'new Hive';
 }
 
 
@@ -49,13 +49,13 @@ class BeeHive {
 @View({
   directives: [HoneyBee, BeeHive],
   template: '\
-    <h1>first Angular 2 App using TypeScript</h1>\
+    <h1>Angular 2 Up-a-Down </h1>\
     <honeybee (new-content)="broadcastNewContent($event)"></honeybee>\
     <beehive [work]="theWork" ></beehive>\
   '
 })
 class AppComponent {
-  theWork: string = '';
+  //theWork: string = 'first time beehive content';
   broadcastNewContent(work) {
     console.log("to the top");
     console.log(work.content);

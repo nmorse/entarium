@@ -12,7 +12,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var HoneyBee = (function () {
     function HoneyBee(gs) {
-        this.content = 'hi';
+        this.content = 'emit content';
         this.newContent = new angular2_1.EventEmitter();
     }
     HoneyBee.prototype.newContentReady = function () {
@@ -21,7 +21,6 @@ var HoneyBee = (function () {
     };
     HoneyBee.prototype.onChange = function (e, new_value) {
         this.content = new_value;
-        alert(new_value);
     };
     HoneyBee = __decorate([
         angular2_1.Component({
@@ -41,6 +40,7 @@ var HoneyBee = (function () {
 })();
 var BeeHive = (function () {
     function BeeHive() {
+        this.work = 'new Hive';
     }
     BeeHive = __decorate([
         angular2_1.Component({
@@ -59,7 +59,6 @@ var BeeHive = (function () {
 })();
 var AppComponent = (function () {
     function AppComponent() {
-        this.theWork = '';
     }
     AppComponent.prototype.broadcastNewContent = function (work) {
         console.log("to the top");
@@ -73,7 +72,7 @@ var AppComponent = (function () {
         angular2_1.View({
             directives: [HoneyBee, BeeHive],
             template: '\
-    <h1>first Angular 2 App using TypeScript</h1>\
+    <h1>Angular 2 Up-a-Down </h1>\
     <honeybee (new-content)="broadcastNewContent($event)"></honeybee>\
     <beehive [work]="theWork" ></beehive>\
   '

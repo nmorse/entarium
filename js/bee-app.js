@@ -10,59 +10,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var angular2_1 = require('angular2/angular2');
-var HoneyBee = (function () {
-    function HoneyBee(gs) {
+var GraphEditor = (function () {
+    function GraphEditor() {
         this.content = 'local content';
         this.newContent = new angular2_1.EventEmitter();
     }
-    HoneyBee.prototype.newContentReady = function () {
+    GraphEditor.prototype.newContentReady = function () {
         console.log("from the bottom");
         this.newContent.next({ content: this.content });
     };
-    HoneyBee.prototype.onChange = function (e, new_value) {
+    GraphEditor.prototype.onChange = function (e, new_value) {
         this.content = new_value;
     };
-    HoneyBee = __decorate([
+    GraphEditor = __decorate([
         angular2_1.Component({
             events: ['newContent'],
             properties: ['content'],
-            selector: 'honeybee'
+            selector: 'graph-editor'
         }),
         angular2_1.View({
-            template: '<h2>Honey Bee</h2>\
+            template: '<h2>Graph Editor</h2>\
   <input #input1 (keyup)="onChange($event, input1.value)" [value]="content" />\
   <button (click)="newContentReady()">send content to be worked on</button>\
   '
         }), 
         __metadata('design:paramtypes', [])
-    ], HoneyBee);
-    return HoneyBee;
+    ], GraphEditor);
+    return GraphEditor;
 })();
-var BeeHive = (function () {
-    function BeeHive() {
+var FlowerField = (function () {
+    function FlowerField() {
         this.work = 'new Hive';
     }
-    BeeHive = __decorate([
+    FlowerField = __decorate([
         angular2_1.Component({
             properties: ['work'],
-            selector: 'beehive'
+            selector: 'flower-field'
         }),
         angular2_1.View({
             template: '\
-    <h2>Bee Hive</h2>\
+    <h2>flower field</h2>\
     <div>{{work}}</div>\
   '
         }), 
         __metadata('design:paramtypes', [])
-    ], BeeHive);
-    return BeeHive;
+    ], FlowerField);
+    return FlowerField;
 })();
 var BeeApp = (function () {
     function BeeApp() {
-        this.hb_content = 'passed in content';
         this.theWork = 'outside work for beehive';
     }
-    BeeApp.prototype.broadcastNewContent = function (work) {
+    BeeApp.prototype.respondToNewContent = function (work) {
         console.log("to the top");
         console.log(work.content);
         this.theWork = work.content;
@@ -72,7 +71,7 @@ var BeeApp = (function () {
             selector: 'bee-app'
         }),
         angular2_1.View({
-            directives: [HoneyBee, BeeHive],
+            directives: [GraphEditor, FlowerField],
             templateUrl: 'template/bee-app.html'
         }), 
         __metadata('design:paramtypes', [])

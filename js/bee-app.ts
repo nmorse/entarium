@@ -1,22 +1,22 @@
 import {Component, View, bootstrap, EventEmitter} from 'angular2/angular2';
 
-// honeyBee
+// graph editor
 @Component({
-  //appInjector: [GraphService],
+  //injector: [GraphService],
   events : ['newContent'],
   properties: ['content'],
-  selector: 'honeybee'
+  selector: 'graph-editor'
 })
 @View({
-  template: '<h2>Honey Bee</h2>\
+  template: '<h2>Graph Editor</h2>\
   <input #input1 (keyup)="onChange($event, input1.value)" [value]="content" />\
   <button (click)="newContentReady()">send content to be worked on</button>\
   '
 })
-class HoneyBee {
+class GraphEditor {
   newContent: EventEmitter;
   content:string = 'local content';
-  constructor (gs: GraphService) {
+  constructor () {
     //>>this.graph = gs.graphel;
     this.newContent = new EventEmitter();
   }
@@ -30,33 +30,31 @@ class HoneyBee {
 }
 
 
-// BeeHive
+// flowerfield
 @Component({
   properties: ['work'],
-  selector: 'beehive'
+  selector: 'flower-field'
 })
 @View({
   template: '\
-    <h2>Bee Hive</h2>\
+    <h2>flower field</h2>\
     <div>{{work}}</div>\
   '
 })
-class BeeHive {
+class FlowerField {
   work:string = 'new Hive';
 }
-
 
 @Component({
   selector: 'bee-app'
 })
 @View({
-  directives: [HoneyBee, BeeHive],
+  directives: [GraphEditor, FlowerField],
   templateUrl: 'template/bee-app.html'
 })
 class BeeApp {
-  hb_content: string = 'passed in content';
   theWork: string = 'outside work for beehive';
-  broadcastNewContent(work) {
+  respondToNewContent(work) {
     console.log("to the top");
     console.log(work.content);
     this.theWork = work.content;
